@@ -1,0 +1,51 @@
+/**
+ * Tweeter module
+ */
+
+var OAuth	= require('oauth');
+
+
+//tweeter_module.js.js
+//========
+var self = module.exports = {
+createTweeter	: function () {
+	var tweeter = new OAuth.OAuth(
+			  "https://api.twitter.com/oauth/request_token",
+			  "https://api.twitter.com/oauth/access_token",
+			  "kgjmptnIsdWh0OTEtPGP7yojW",
+			  "d6JbEWDx6YnI2A369nEpayJroXTEKSoL6bQTqC4iUJK6kfNguY",
+			  "1.0",
+			  null,
+			  "HMAC-SHA1"
+			);	
+	return tweeter;
+},
+
+tweet			: function (str) {
+	self.createTweeter().post('https://api.twitter.com/1.1/statuses/update.json', 
+			'901217331522809857-AkpKrx6CMBlH5Q0CLd6A8Efr0qEq2km', 
+			'mQg2ywzJ13bC2z0cRlBDb2RcGspydWRJWt2DZFAif1eiK', {'status': str} , "application/json", function (e, data, res){
+		        if (e) {console.error(e);}        
+		        else {
+		        	console.log("Tweeting:"+str+"...");
+		        }
+		      });
+}
+,
+getMediaID 		: function (buf)
+{
+	self.createTweeter().post('https://upload.twitter.com/1.1/media/upload.json', 
+			'901217331522809857-AkpKrx6CMBlH5Q0CLd6A8Efr0qEq2km', 
+			'mQg2ywzJ13bC2z0cRlBDb2RcGspydWRJWt2DZFAif1eiK', {  form: {'media' : buf}} , "application/json", function (e, data, res){
+		        if (!e && e.statusCode===200)         
+		        {
+		        	console.log('Success!');
+		        	//A REMETTRE
+		        }
+		        else {console.log(e);}
+		      });
+}
+	
+
+};
+

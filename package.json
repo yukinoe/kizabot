@@ -1,0 +1,22 @@
+{
+  "name": "SuperCineBot",
+  "version": "1.0.0",
+  "description": "SuperCineBot",
+  "main": "main.js",
+  "scripts": {
+    "run": "node main.js"
+  },
+  "repository": "",
+  "keywords": [
+    "node.js",
+    "eclipse",
+    "nodeclipse"
+  ],
+  "author": "",
+  "license": "SuperCineBattle",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "node-twitter": "^0.5.3"
+  }
+}
