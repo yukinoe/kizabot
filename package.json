@@ -4,7 +4,7 @@
   "description": "SuperCineBot",
   "main": "main.js",
   "scripts": {
-	"start": "node main",  
+    "start": "node main",
     "run": "node main.js"
   },
   "repository": "",
@@ -19,7 +19,6 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "node-twitter": "^0.5.3",
-    "twit": "^2.2.9",
-    "node-twitter": "^0.5.3"
+    "twit": "^2.2.9"
   }
 }
