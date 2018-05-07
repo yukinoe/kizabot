@@ -4,6 +4,7 @@
   "description": "SuperCineBot",
   "main": "main.js",
   "scripts": {
+	"start": "node main",  
     "run": "node main.js"
   },
   "repository": "",
