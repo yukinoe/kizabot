@@ -17,8 +17,12 @@
   "license": "SuperCineBattle",
   "readmeFilename": "README.md",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "node-twitter": "^0.5.3",
+    "case-insensitive": "^1.0.0",
+    "ent": "^2.2.0",
+    "fs": "0.0.1-security",
+    "htmlparser2": "^3.9.2",
+    "json": "^9.0.6",
+    "request": "^2.85.0",
     "twit": "^2.2.9"
   }
 }
