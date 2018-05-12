@@ -20,15 +20,15 @@ getTvProgram	: function(tv_channel, msg_gen_callback, final_callback){
 	
 	var log=function(poster, movie_title,movie_rank, total_movie_ranked, movie_year, movie_time, tv_channel, cb){
 		var str ='';
-		console.log('movie_title'+movie_title);
-		console.log('poster'+poster);
+		console.log('movie_title: '+movie_title);
+		console.log('poster: '+poster);
 		if( (movie_time.getMinutes()=== 'undefined') || (movie_time.getMinutes()===0)){
 			str = 'Ce soir sur '+tv_channel.name+' à '+movie_time.getHours()+'h'+', \"'+movie_title+'\", film #'+movie_rank+'/'+total_movie_ranked+' de la liste des années '+movie_year;
 		}else
 			{str = 'Ce soir sur '+tv_channel.name+' à '+movie_time.getHours()+'h'+movie_time.getMinutes()+', \"'+movie_title+'\", film #'+movie_rank+'/'+total_movie_ranked+' de la liste des années '+movie_year;}
-		if (str.length < 140) {
-			str = str+" #SuperCineBattle";
-			if(str.length < 140){
+		if (str.length < 280) {
+			str = str+" #SuperCineBattle #dailytweet";
+			if(str.length < 280){
 				str = str+" cc @SuperCineBattle";
 			}
 		}
@@ -42,6 +42,7 @@ getTvProgram	: function(tv_channel, msg_gen_callback, final_callback){
 				encoding : 'utf8',
 				gzip : true,
 				json : true
+				
 			},
 			function (error, response, body) {	
 				if (!error && response.statusCode === 200) {

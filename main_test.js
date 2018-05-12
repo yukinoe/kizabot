@@ -75,6 +75,8 @@ var process_program = function(str) {
 //main
 //pour chaque chaine TV 
 var main = function (){
+
+	
 	
 	console.log("\n"+new Date().toISOString());
 	

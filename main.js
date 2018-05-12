@@ -73,6 +73,10 @@
  * 25/12/17
  * - ssb_module/compare_ssb : added extra request in order to look for a poster one year prior the year given by french television
  * - tweeter_module : change console.log data output by a simple console.log function
+ * 
+ * 12/05/2018
+ * - Added dev mode to avoid unwanted tweets
+ * - The program displayed string time is in Paris timezone
  */
 
 
@@ -84,12 +88,17 @@ var process_program = function(str) {
 	console.log(str);
 };
 
-
 //main
 //pour chaque chaine TV 
 var main = function (){
 	
-	console.log("\n"+new Date().toISOString());
+	if (process.env.COMPUTERNAME==="ULTRAMAN"){
+		console.log("Kizabot will work is dev mode, no tweet will be send...\n");
+	}
+	
+	console.log("Kizabot waked up at "+new Date().toLocaleString('UTC', {
+	    timeZone: 'Europe/Paris'
+	  })+"\n");
 	
 	for (var j=0; j<playtv_module.channel_list.length; j++){	
 		//recuperer le programme télé  
