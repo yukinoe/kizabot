@@ -29,7 +29,7 @@ console.log(nDate);
 
 var nDate = new Date().toLocaleString('en-US', {
     timeZone: 'Europe/Paris'
-  }).toISOstring();
+  });
 
 console.log(nDate);
 return 0;
