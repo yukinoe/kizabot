@@ -9,7 +9,7 @@ var json 	= require('json');
 module.exports = {
 channel_list	: [{id:'tf1', name:'tf1'},{id:'2',name:'France2'},{id:'3', name:'France3'},{id:'4', name:'France4'},
 	{ id:'5', name: 'France5'},{ id:'m6', name: 'm6'},{id:'arte', name:'arte'},{id:'c8', name: 'c8'}, {id:'w9', name:'w9'}, 
-	{id:'tmc', name:'tmc'}, {id:'12', name:'rtl9'}, {id:'14', name:'nt1'}, {id:'620', name:'hd1'}, {id: '1123', name: 'cstar'}, {id: '15', name: 'nrj12'} ]
+	{id:'tmc', name:'tmc'}, {id:'12', name:'rtl9'}, {id:'14', name:'nt1'}, {id:'620', name:'hd1'}, {id: '1123', name: 'cstar'}, {id: '15', name: 'nrj12'}, {id: '622', name: '6ter'}, {id: '1145', name: 'tfx'}  ]
 ,
 /*
  * tv_channel		= 

@@ -77,6 +77,9 @@
  * 12/05/2018
  * - Added dev mode to avoid unwanted tweets
  * - The program displayed string time is in Paris timezone
+ * 
+ * 21/05/2018
+ * - Changed matching to 19h instead until javascipt timezone issue is fixed 
  */
 
 
