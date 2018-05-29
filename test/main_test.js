@@ -20,12 +20,8 @@ var main = function (){
 
 	server.use(bodyParser.json());
 	
-	server.post('/get-movie-details', (req, res) => {
-
-	    const movieToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
-	    const reqUrl = encodeURI(`http://www.omdbapi.com/?t=${movieToSearch}&apikey=f176436d&t`);
-	    console.log("movieToSearch: "+movieToSearch);
-	    
+	server.post('/get-movie-details', (request, response) => {
+		response.json({fulfillmentText: 'This is my response. Kizabot!'});
 	});
 	
 	server.listen((process.env.PORT || 8000), () => {
