@@ -9,7 +9,7 @@ const bodyParser 	= require('body-parser');
 const http 			= require('http');
 
 var main = function (){
-	console.log("helloworld"); 
+	console.log("Starting server..."); 
 	
 	//initialisation du server
 	const server = express();
@@ -22,6 +22,7 @@ var main = function (){
 	
 	server.post('/get-movie-details', (request, response) => {
 		response.json({fulfillmentText: 'This is my response. Kizabot!'});
+		console.log('This is my response. Kizabot!');
 	});
 	
 	server.listen((process.env.PORT || 8000), () => {
