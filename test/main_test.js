@@ -20,9 +20,15 @@ var main = function (){
 
 	server.use(bodyParser.json());
 	
+
+	server.get('/get-movie-details', (request, response) => {
+		response.json({fulfillmentText: 'This is my response for a GET/! Kizabot!'});
+		console.log('This is my response for a GET/ request. Kizabot!');
+	});
+	
 	server.post('/get-movie-details', (request, response) => {
-		response.json({fulfillmentText: 'This is my response. Kizabot!'});
-		console.log('This is my response. Kizabot!');
+		response.json({fulfillmentText: 'This is my response for a POST/! Kizabot!'});
+		console.log('This is my response for a POST/ request. Kizabot!');
 	});
 	
 	server.listen((process.env.PORT || 8000), () => {
