@@ -103,6 +103,11 @@ var main = function (){
 		console.log("Kizabot will work is dev mode, no tweet will be send...\n");
 	}
 	
+	if (process.env.NODE_ENV==="production"){
+		console.log("Kizabot is in a production environment...\n");
+	}
+	
+	
 	console.log("Kizabot waked up at "+new Date().toLocaleString('UTC', {
 	    timeZone: 'Europe/Paris'
 	  })+"\n");
@@ -116,11 +121,12 @@ var main = function (){
 const app = express();
 
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+	res.send('Hello World!');
+	console.log(req);	
 });
 
-app.listen(8080, function () {
-  console.log('App listening on port 8080!');
+app.listen(3000, function () {
+  console.log('App listening on port 3000!');
 });
 
 
