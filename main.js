@@ -79,13 +79,17 @@
  * - The program displayed string time is in Paris timezone
  * 
  * 21/05/2018
- * - Changed matching to 19h instead until javascipt timezone issue is fixed 
+ * - Changed matching to 19h instead until javascript timezone issue is fixed 
+ * 
+ * 11/06/2018
+ * - Added webapp feature (helloworld) 
  */
 
 
 var tweeter_module 	= require('./modules/tweeter_module.js');
 var playtv_module	= require('./modules/playtv_module.js');
 var ssb_module		= require('./modules/ssb_module.js');
+var express			= require('express');
 
 var process_program = function(str) {
 	console.log(str);
@@ -108,6 +112,21 @@ var main = function (){
 		playtv_module.getTvProgram(playtv_module.channel_list[j], ssb_module.compare_ssb, tweeter_module.tweetMedia);	
  	}
 };
+
+const app = express();
+
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
+
+app.listen(8080, function () {
+  console.log('App listening on port 8080!');
+});
+
+
+/*server.listen((process.env.PORT || 8080), () => {
+    console.log("Server is up and running...");
+});*/
 
 var onedayinms= 86400000;
 

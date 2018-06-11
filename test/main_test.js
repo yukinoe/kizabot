@@ -31,7 +31,7 @@ var main = function (){
 		console.log('This is my response for a POST/ request. Kizabot!');
 	});
 	
-	server.listen((process.env.PORT || 8000), () => {
+	server.listen((process.env.PORT || 8080), () => {
 	    console.log("Server is up and running...");
 	});
 	

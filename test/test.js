@@ -1,20 +1,22 @@
-var d = new Date('2018-5-30 20:40:00');
+/*jshint esversion: 6 */
 
-console.log(d);
+const fs = require('fs');
+const readline = require('readline');
+const {google} = require('googleapis');
 
-var st = d.toLocaleString('UTC', {timeZone: 'Europe/Paris'});
+// If modifying these scopes, delete credentials.json.
+const TOKEN_PATH = 'credentials.json';
 
-console.log(st);
+const oauth2Client = new google.auth.OAuth2(
+		  '598228785002-7sqeh8cn137l0vq3g6fmfgts1u1mjefe.apps.googleusercontent.com',
+		  'f9LkpGLgYLV-ElzTP8K5kP3V',
+		  'http://localhost:8000'
+		);
 
-var tab=st.split(' ');
+const redirect_url = oauth2Client.generateAuthUrl({
+	access_type	: 'offline',
+	scope 		: 'https://www.googleapis.com/auth/drive.metadata.readonly'
+});
 
-var part1 =  tab[0].split('-');
+console.log(redirect_url);
 
-var part2 =  tab[1].split(':');
-
-var date1 = new Date(part1[0],part1[1]-1,part1[2],part2[0],part2[1],part2[2]);
-
-console.log(date1);
-
-
-return 0;
