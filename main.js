@@ -90,6 +90,7 @@ var tweeter_module 	= require('./modules/tweeter_module.js');
 var playtv_module	= require('./modules/playtv_module.js');
 var ssb_module		= require('./modules/ssb_module.js');
 var express			= require('express');
+var bodyParser = require('body-parser');
 
 var process_program = function(str) {
 	console.log(str);
@@ -120,9 +121,14 @@ var main = function (){
 
 const app = express();
 
+
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+
 app.get('/', function (req, res) {
 	res.send('Hello World!');
-	console.log(req);	
+	console.log(req.body);	
 });
 
 app.listen(8080, function () {
