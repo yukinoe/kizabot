@@ -128,7 +128,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.get('/', function (req, res) {
 	res.send('Hello World!');
-	console.log("url: "+req.url+" body: "+req.body);		
+	console.log("url: "+req.hostname+" body: "+req.body);		
 });
 
 app.listen(8080, function () {

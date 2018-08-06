@@ -15,7 +15,7 @@ var process_program = function(str) {
 var request	= require('request');
 var json 	= require('json');
 
-var json = require('./program_rtl9_28oct17.json');
+var json = require('./test_data/program_rtl9_28oct17.json');
 
 /*
  * tv_channel		= 

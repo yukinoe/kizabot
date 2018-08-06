@@ -17,6 +17,7 @@
   "license": "SuperCineBattle",
   "readmeFilename": "README.md",
   "dependencies": {
+    "async": "^2.6.1",
     "body-parser": "^1.18.3",
     "case-insensitive": "^1.0.0",
     "ent": "^2.2.0",
@@ -25,6 +26,7 @@
     "googleapis": "^27.0.0",
     "htmlparser2": "^3.9.2",
     "json": "^9.0.6",
+    "refresh-token": "^1.0.0",
     "request": "^2.85.0",
     "twit": "^2.2.9"
   }

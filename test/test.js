@@ -1,22 +1,98 @@
 /*jshint esversion: 6 */
 
-const fs = require('fs');
-const readline = require('readline');
-const {google} = require('googleapis');
+let {google} = require('googleapis');
+let privatekey = require("../resources/KizabotAgent-530799de37b9.json");
 
-// If modifying these scopes, delete credentials.json.
-const TOKEN_PATH = 'credentials.json';
+//This @Onibaki_ shared supercinebattle Google Sheet 
+/* /!\ Important Note: This spreadsheet needs to be shared with the 
+ * service account email (in privatekey.client_email) in order to work*/
+const SuperCineBattleShareSheetID	= '1gEZBHedLVHfX8o0fpmGN7QglY3njv6-sXE7WK229tOE';
 
-const oauth2Client = new google.auth.OAuth2(
-		  '598228785002-7sqeh8cn137l0vq3g6fmfgts1u1mjefe.apps.googleusercontent.com',
-		  'f9LkpGLgYLV-ElzTP8K5kP3V',
-		  'http://localhost:8000'
-		);
+//const SuperCineBattleSheetID		= ;
+console.log(privatekey.client_email);
 
-const redirect_url = oauth2Client.generateAuthUrl({
-	access_type	: 'offline',
-	scope 		: 'https://www.googleapis.com/auth/drive.metadata.readonly'
+//configure a JWT auth client
+let jwtClient = new google.auth.JWT(
+       privatekey.client_email,
+       null,
+       privatekey.private_key,
+       ['https://www.googleapis.com/auth/spreadsheets',
+        'https://www.googleapis.com/auth/drive']);
+//authenticate request
+jwtClient.authorize(function (err, tokens) {
+ if (err) {
+   console.log(err);
+   return;
+ } else {
+   console.log("Successfully connected! ");
+ }
 });
 
-console.log(redirect_url);
 
+//https://docs.google.com/spreadsheets/d/1g	EZBHedLVHfX8o0fpmGN7QglY3njv6-sXE7WK229tOE/edit#gid=1447928535
+
+let spreadsheetID = '1gEZBHedLVHfX8o0fpmGN7QglY3njv6-sXE7WK229tOE';
+
+//Google Sheets API
+let sheets = google.sheets('v4');
+
+//Pour récupérer les infos du classeur (notamment le nom de chaque feuille)
+sheets.spreadsheets.get({auth: jwtClient,spreadsheetId: spreadsheetID}, 
+		function(err, response){
+			if(err){
+				console.error(err);
+				return;
+			}
+			else {
+				//
+				console.log(response.data.sheets);
+				for (var i = 0; i < response.data.sheets.length; i++) {
+			           var file = response.data.sheets[i].properties.title;
+			           //console.log('%s (%s)', file.name, file.id);
+			           console.log(file);
+			    }
+				console.log(" ");
+				}
+});
+
+let sheetName = '\'AnnÃ©es 90\'s\'!A:J';
+
+//Pour récupérer les données d'une feuille (titre du film rang etc...)
+sheets.spreadsheets.values.get({
+   auth: jwtClient,
+   spreadsheetId: spreadsheetID,
+   range: sheetName,
+   majorDimension: 'ROWS',
+   valueRenderOption: 'UNFORMATTED_VALUE',
+   dateTimeRenderOption: 'FORMATTED_STRING'
+}, function (err, response) {
+   if (err) {
+       console.log('The API returned an error: ' + err);
+   } else {
+       console.log('Movie list from Google Sheets:');
+       console.log(response.data);       
+   }
+});
+	
+//Google Drive API
+let drive = google.drive('v3');
+drive.files.list({
+   auth: jwtClient,
+   q: "name contains 'Battle'"
+}, function (err, response) {
+   if (err) {
+       console.log('The API returned an error: ' + err);
+       return;
+   }
+   var files = response.data.files;
+   if (files.length === 0) {
+       console.log('No files found.');
+   } else {
+       console.log('Files from Google Drive:');
+       for (var i = 0; i < files.length; i++) {
+           var file = files[i];
+           //console.log('%s (%s)', file.name, file.id);
+           console.log(' ');
+       }
+   }
+});
