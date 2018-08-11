@@ -30,33 +30,6 @@ jwtClient.authorize(function (err, tokens) {
  }
 });
 
-
-//https://docs.google.com/spreadsheets/d/1g	EZBHedLVHfX8o0fpmGN7QglY3njv6-sXE7WK229tOE/edit#gid=1447928535
-
-
-	
-/*Google Drive API
-let drive = google.drive('v3');
-drive.files.list({
-   auth: jwtClient,
-   q: "name contains 'Battle'"
-}, function (err, response) {
-   if (err) {
-       console.log('The API returned an error: ' + err);
-       return;
-   }
-   var files = response.data.files;
-   if (files.length === 0) {
-       console.log('No files found.');
-   } else {
-       console.log('Files from Google Drive:');
-       for (var i = 0; i < files.length; i++) {
-           var file = files[i];
-           console.log('%s (%s)', file.name, file.id);
-       }
-   }
-});*/
-
 var self = module.exports = {
 		checkAndcopy	: function () {
 		},
@@ -101,3 +74,27 @@ var self = module.exports = {
 			
 		}
 };
+
+//https://docs.google.com/spreadsheets/d/1g	EZBHedLVHfX8o0fpmGN7QglY3njv6-sXE7WK229tOE/edit#gid=1447928535
+
+/*Google Drive API
+let drive = google.drive('v3');
+drive.files.list({
+   auth: jwtClient,
+   q: "name contains 'Battle'"
+}, function (err, response) {
+   if (err) {
+       console.log('The API returned an error: ' + err);
+       return;
+   }
+   var files = response.data.files;
+   if (files.length === 0) {
+       console.log('No files found.');
+   } else {
+       console.log('Files from Google Drive:');
+       for (var i = 0; i < files.length; i++) {
+           var file = files[i];
+           console.log('%s (%s)', file.name, file.id);
+       }
+   }
+});*/
