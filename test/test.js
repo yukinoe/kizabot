@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 let {google} = require('googleapis');
-let privatekey = require("../resources/KizabotAgent-530799de37b9.json");
+let privatekey = require("../resources/KizabotAgent-df1d49810bea.json");
 
 //This @Onibaki_ shared supercinebattle Google Sheet 
 /* /!\ Important Note: This spreadsheet needs to be shared with the 
@@ -35,7 +35,7 @@ var self = module.exports = {
 			   return;
 			 } else {
 			   console.log("Successfully connected! ");
-			   self.getSheetList(jwtClient);
+			   self.getSheetList(jwtClient, callback);
 			 }
 			});
 		},
@@ -53,11 +53,10 @@ var self = module.exports = {
 						}
 						else {
 							var sheets_list = [];
-							//
-							console.log(response.data.sheets);
+							//console.log(response.data.sheets);
 							for (var i = 0; i < response.data.sheets.length; i++) {
 						           var file = response.data.sheets[i].properties.title;
-						           //console.log('%s (%s)', file.name, file.id);
+						           console.log('file '+file);
 						           self.parseSheet(jwtClient,file,callback);
 						    }
 					           
@@ -70,7 +69,7 @@ var self = module.exports = {
 				sheets.spreadsheets.values.get({
 					   auth: jwtClient,
 					   spreadsheetId: spreadsheetID,
-					   range: sheetName+'!A:J',
+					   range: sheetName.replace("'","\'")+'!A:J',
 					   majorDimension: 'ROWS',
 					   valueRenderOption: 'UNFORMATTED_VALUE',
 					   dateTimeRenderOption: 'FORMATTED_STRING'
@@ -112,4 +111,4 @@ var self = module.exports = {
 */
 };
 
-self.connect( privatekey.client_email,privatekey.private_key);
+self.connect( privatekey.client_email,privatekey.private_key, console.log);
