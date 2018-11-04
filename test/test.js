@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 let {google} = require('googleapis');
-let privatekey = require("../resources/KizabotAgent-df1d49810bea.json");
+let privatekey = require("../resources/kizabotagent-02f8dbb723da.json");
 
 //This @Onibaki_ shared supercinebattle Google Sheet 
 /* /!\ Important Note: This spreadsheet needs to be shared with the 
@@ -111,4 +111,4 @@ var self = module.exports = {
 */
 };
 
-self.connect( privatekey.client_email,privatekey.private_key, console.log);
+self.connect(process.env.service_account_client_email,process.env.service_account_private_key.replace(/\\n/g, '\n'), console.log);
