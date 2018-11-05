@@ -8,7 +8,7 @@
  * Tweeter module
  */
 
-var Twit = require('Twit');
+var Twit = require('twit');
 var fs 	 = require('fs');
 var request = require('request').defaults({ encoding: null });
 
