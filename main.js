@@ -83,6 +83,9 @@
  * 
  * 11/06/2018
  * - Added webapp feature (helloworld) 
+ * 
+ * 05/11/2018
+ * - security patch
  */
 
 
@@ -115,7 +118,7 @@ var main = function (){
 	
 	for (var j=0; j<playtv_module.channel_list.length; j++){	
 		//recuperer le programme télé  
-		playtv_module.getTvProgram(playtv_module.channel_list[j], ssb_module.compare_ssb, tweeter_module.tweetMedia);	
+		playtv_module.getTvProgram(playtv_module.channel_list[j], ssb_module.compare_ssb, tweeter_module.tweet_media);	
  	}
 };
 
