@@ -23,7 +23,7 @@ getTvProgram	: function(tv_channel, msg_gen_callback, final_callback){
 	var log=function(poster, movie_title,movie_rank, total_movie_ranked, movie_year, movie_time, tv_channel, cb){
 		var str ='';
 		var today = new Date();
-		var movie_airing_date = today.getDate().toLocaleString('en', {minimumIntegerDigits:2,useGrouping:false})+'/'+today.getMonth().toLocaleString('en', {minimumIntegerDigits:2,useGrouping:false});
+		var movie_airing_date = today.getDate().toLocaleString('en', {minimumIntegerDigits:2,useGrouping:false})+'/'+(today.getMonth()+1).toLocaleString('en', {minimumIntegerDigits:2,useGrouping:false});
 			
 		console.log('movie_title: '+movie_title);
 		console.log('poster: '+poster);
