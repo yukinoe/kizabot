@@ -2,48 +2,15 @@
 var tweeter_module 	= require('../modules/tweeter_module.js');
 var playtv_module	= require('../modules/playtv_module.js');
 var ssb_module		= require('../modules/ssb_module.js');
+var utils			= require('../modules/utils_module.js');
+
+var request	= require('request');
+var json 	= require('json');
 
 var process_program = function(str) {
 	console.log(str);
 };
 
+var json = require('./test_data/program_tfx_ligneverte.json');
 
-/**
- * http://usejsdoc.org/
- */
-
-var request	= require('request');
-var json 	= require('json');
-
-var json = require('./test_data/program_rtl9_28oct17.json');
-
-/*
- * tv_channel		= 
- * msg_gen_callback = function "compare_ssb"
- * final_callback	= callback given as a parameter for compare_ssb/msg_gen_callback 
- * */
-	
-
-var log=function(poster, movie_title,movie_rank, total_movie_ranked, movie_year, movie_time, tv_channel, cb){
-	var str ='';
-	console.log('movie_title: '+movie_title);
-	console.log('poster: '+poster);
-	if( (movie_time.getMinutes()=== 'undefined') || (movie_time.getMinutes()===0)){
-		str = 'Ce soir sur '+tv_channel.name+' à '+movie_time.getHours()+'h'+', \"'+movie_title+'\", film #'+movie_rank+'/'+total_movie_ranked+' de la liste des années '+movie_year;
-	}else
-		{str = 'Ce soir sur '+tv_channel.name+' à '+movie_time.getHours()+'h'+movie_time.getMinutes()+', \"'+movie_title+'\", film #'+movie_rank+'/'+total_movie_ranked+' de la liste des années '+movie_year;}
-	if (str.length < 280) {
-		str = str+" #SuperCineBattle #dailytweet";
-		if(str.length < 280){
-			str = str+" cc @SuperCineBattle";
-		}
-	}
-	
-	console.log("Calling callback with "+str);
-	cb(str, poster);
-};
-
-//callback = compare_ssb = function(error, channel, channel_progam_json, cb)
-ssb_module.compare_ssb(null, {id:'12', name:'rtl9'}, json, log, process_program);
-
-
+ssb_module.compare_ssb(null, {id:'12', name:'rtl9'}, json, utils.log, process_program);

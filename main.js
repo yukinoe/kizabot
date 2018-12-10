@@ -92,6 +92,7 @@
 var tweeter_module 	= require('./modules/tweeter_module.js');
 var playtv_module	= require('./modules/playtv_module.js');
 var ssb_module		= require('./modules/ssb_module.js');
+var utils			= require('./modules/utils_module.js');
 var express			= require('express');
 var bodyParser = require('body-parser');
 
@@ -111,19 +112,40 @@ var main = function (){
 		console.log("Kizabot is in a production environment...\n");
 	}
 	
-	
 	console.log("Kizabot waked up at "+new Date().toLocaleString('UTC', {
 	    timeZone: 'Europe/Paris'
 	  })+"\n");
 	
 	for (var j=0; j<playtv_module.channel_list.length; j++){	
 		//recuperer le programme télé  
-		playtv_module.getTvProgram(playtv_module.channel_list[j], ssb_module.compare_ssb, tweeter_module.tweet_media);	
+		playtv_module.getTvProgram(playtv_module.channel_list[j], ssb_module.compare_allssb_with_channel);
+		
  	}
 };
 
-const app = express();
+var main_bis = function (){
+	
+	if (process.env.COMPUTERNAME==="ULTRAMAN"){
+		console.log("Kizabot will work is dev mode, no tweet will be send...\n");
+	}
+	
+	if (process.env.NODE_ENV==="production"){
+		console.log("Kizabot is in a production environment...\n");
+	}
+		
+	console.log("Kizabot waked up at "+new Date().toLocaleString('UTC', {
+	    timeZone: 'Europe/Paris'
+	  })+"\n");
+	
+	for (var i=0; i<Object.keys(ssb_module.ssb_liste_ultime_array).length; i++){	
+		//recuperer le programme télé  
+		console.log(ssb_module.ssb_liste_ultime_array[(1970+(i*10)).toString()]);
+ 	}
+};
 
+
+/*
+const app = express();
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -137,11 +159,7 @@ app.get('/', function (req, res) {
 app.listen(8080, function () {
   console.log('App listening on port 8080!');
 });
-
-
-/*server.listen((process.env.PORT || 8080), () => {
-    console.log("Server is up and running...");
-});*/
+*/
 
 var onedayinms= 86400000;
 

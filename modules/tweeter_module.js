@@ -4,10 +4,6 @@
 
 /*jshint esversion: 6 */
 
-/**
- * Tweeter module
- */
-
 var Twit = require('twit');
 var fs 	 = require('fs');
 var request = require('request').defaults({ encoding: null });
@@ -96,8 +92,6 @@ createTweeter: function () {
 			    else { console.error(error);}
 				});
 			}
-		
-		
 		
 	}
 
