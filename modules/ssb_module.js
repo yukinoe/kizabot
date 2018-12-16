@@ -168,7 +168,10 @@ look_for_film : function(list_film,json_object, year, channel, callback){
 				d.setHours(d.getHours()+1); //TODO !!!!!!GMT+2 patch. A fixer au plus vite!!!
 			}		
 			
-			if ( (ci(elt.titre).equals(json_object[k].program.title) || ci(elt.titre).equals(json_object[k].program.originaltitle) ) && ((json_object[k].program.year>=year) && (json_object[k].program.year<(year+10)) && (d.getHours()>=19))){
+			//"Jeanne d'Arc" fix
+			var movie_elt_from_ssblist = elt.titre.replace("’","'");
+			
+			if ( (ci(movie_elt_from_ssblist).equals(json_object[k].program.title) || ci(movie_elt_from_ssblist).equals(json_object[k].program.originaltitle) ) && ((json_object[k].program.year>=year) && (json_object[k].program.year<(year+10)) && (d.getHours()>=19))){
 				console.log("\'"+json_object[k].program.originaltitle+"\' fully matched, program starting datetime "+d);
 				//callback = log = function(movie_title,movie_rank, movie_year, tv_channel, tweet_action_cb)
 				
