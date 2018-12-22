@@ -1,0 +1,36 @@
+{
+  "name": "kizabot",
+  "scripts": {
+  },
+  "env": {
+    "omdb_api": {
+      "required": true
+    },
+    "twitter_access_token": {
+      "required": true
+    },
+    "twitter_access_token_secret": {
+      "required": true
+    },
+    "twitter_consumer_key": {
+      "required": true
+    },
+    "twitter_consumer_secret": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "stack": "heroku-16",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
