@@ -171,7 +171,7 @@ look_for_film : function(list_film,json_object, year, channel, callback){
 			//"Jeanne d'Arc" fix
 			var movie_elt_from_ssblist = elt.titre.replace("’","'");
 			
-			if ( (ci(movie_elt_from_ssblist).equals(json_object[k].program.title) || ci(movie_elt_from_ssblist).equals(json_object[k].program.originaltitle) ) && ((json_object[k].program.year>=year) && (json_object[k].program.year<(year+10)) && (d.getHours()>=19))){
+			if ( (ci(movie_elt_from_ssblist).equals(json_object[k].program.title) || ci(movie_elt_from_ssblist).equals(json_object[k].program.originaltitle) || ci(movie_elt_from_ssblist.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/ /g, '-')).equals(json_object[k].program.alias))  && ((json_object[k].program.year>=year) && (json_object[k].program.year<(year+10)) && (d.getHours()>=19))){
 				console.log("\'"+json_object[k].program.originaltitle+"\' fully matched, program starting datetime "+d);
 				//callback = log = function(movie_title,movie_rank, movie_year, tv_channel, tweet_action_cb)
 				
@@ -182,6 +182,7 @@ look_for_film : function(list_film,json_object, year, channel, callback){
 				var omdb_api_key  = process.env.omdb_api;
 				
 				if (omdb_api_key === undefined){
+					console.error("OMDB API KEY not found!");
 					throw 'OMDB API KEY not found!';
 				}
 				
